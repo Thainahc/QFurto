@@ -46,14 +46,21 @@ namespace QFurto.Services
             }
         }
 
-        public void Add(Anuncio anuncio)
+        public void AddOrUpdate(Anuncio anuncio)
         {
             try
             {
                 dataContext.BeginTransaction();
                 if (ValidaAnuncio(anuncio))
                 {
-                    anuncioRepository.Add(anuncio);
+                    if (anuncio.AnuncioId > 0)
+                    {
+                        Update(anuncio);
+                    }
+                    else
+                    {
+                        Add(anuncio);
+                    }
                     dataContext.Commit();
                     ResponseService = new ResponseService()
                     {
@@ -74,6 +81,20 @@ namespace QFurto.Services
             finally
             {
                 dataContext.Finally();
+            }
+        }
+
+        private void Add(Anuncio anuncio)
+        {
+            anuncioRepository.Add(anuncio);
+        }
+
+        private void Update(Anuncio anuncio)
+        {
+            var anuncioRecuperado = anuncioRepository.Select(anuncio.AnuncioId);
+            if (anuncioRecuperado.AnuncioId > 0)
+            {
+                anuncioRepository.Update(anuncio);
             }
         }
 
