@@ -18,7 +18,7 @@ namespace QFurto.Controllers
             try
             {
                 AnuncioService anuncioService = new AnuncioService();
-                anuncioService.Add(anuncio);
+                anuncioService.AddOrUpdate(anuncio);
                 if (anuncioService.ResponseType.Equals("Error"))
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, anuncioService.ResponseMessage);
