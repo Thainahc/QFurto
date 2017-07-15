@@ -127,7 +127,7 @@ namespace QFurto.Repositories
 
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
-                    var row = dataTable.Rows[0];
+                    var row = dataTable.Rows[i];
                     var anuncio = new Anuncio()
                     {
                         AnuncioId = Convert.ToInt32(row["AnuncioId"]),

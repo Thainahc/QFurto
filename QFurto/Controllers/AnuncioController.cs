@@ -1,11 +1,8 @@
 ﻿using QFurto.Models.Entities;
 using QFurto.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
 
 namespace QFurto.Controllers
@@ -35,13 +32,13 @@ namespace QFurto.Controllers
             }
             catch (Exception ex)
             {
-
+                return Request.CreateErrorResponse(
+                    HttpStatusCode.BadRequest, "Erro ao cadastrar anuncio.");
             }
-            return Request.CreateErrorResponse(
-                HttpStatusCode.BadRequest, "Erro ao cadastrar anuncio.");
         }
 
         [HttpGet]
+        [Route("api/ListaAnuncio")]
         public HttpResponseMessage Get()
         {
             try
@@ -67,10 +64,9 @@ namespace QFurto.Controllers
             }
             catch (Exception ex)
             {
-
+                return Request.CreateErrorResponse(
+                    HttpStatusCode.BadRequest, "Erro ao recuperar lista de anúncios.");
             }
-            return Request.CreateErrorResponse(
-                HttpStatusCode.BadRequest, "Erro ao recuperar lista de anúncios.");
         }
     }
 }
