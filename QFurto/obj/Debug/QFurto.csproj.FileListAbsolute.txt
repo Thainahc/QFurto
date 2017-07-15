@@ -153,3 +153,4 @@ D:\Hackaton\QFurto\QFurto\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\Hackaton\QFurto\QFurto\bin\System.Web.Http.Owin.xml
 D:\Hackaton\QFurto\QFurto\obj\Debug\QFurto.dll
 D:\Hackaton\QFurto\QFurto\obj\Debug\QFurto.pdb
+D:\Hackathon\QFurto\QFurto\bin\MySql.Data.dll

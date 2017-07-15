@@ -112,5 +112,40 @@ namespace QFurto.Repositories
             }
             return new Anuncio();
         }
+
+        public List<Anuncio> Get()
+        {
+            var dataTable = new DataTable();
+            var query = new StringBuilder();
+            query.Append(" SELECT * FROM Anuncios ");
+            var mySqlCommand = new MySqlCommand(
+                query.ToString(), DataContext.MySqlConnection, DataContext.MySqlTransaction);
+            dataTable.Load(mySqlCommand.ExecuteReader());
+            if (dataTable.Rows.Count > 0)
+            {
+                var anuncios = new List<Anuncio>();
+
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    var row = dataTable.Rows[0];
+                    var anuncio = new Anuncio()
+                    {
+                        AnuncioId = Convert.ToInt32(row["AnuncioId"]),
+                        DataHora = Convert.ToDateTime(row["DataHora"]),
+                        NomePessoa = row["NomePessoa"].ToString(),
+                        VeiculoTipo = (VeiculoEnum)row["VeiculoTipo"],
+                        Modelo = row["Modelo"].ToString(),
+                        Placa = row["Placa"].ToString(),
+                        Ano = Convert.ToInt32(row["Ano"]),
+                        Bairro = (BairroEnum)row["Bairro"],
+                        Descricao = row["Descricao"].ToString(),
+                        Telefone = row["Telefone"].ToString()
+                    };
+                    anuncios.Add(anuncio);
+                }
+                return anuncios;
+            }
+            return new List<Anuncio>();
+        }
     }
 }

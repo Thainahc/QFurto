@@ -121,6 +121,10 @@ namespace QFurto.Services
             {
                 ResponseService.FieldsInvalids.Add("Telefone");
             }
+            if (string.IsNullOrEmpty(anuncio.Placa))
+            {
+                ResponseService.FieldsInvalids.Add("Placa");
+            }
             if (ResponseService.FieldsInvalids.Count > 0)
             {
                 ResponseService.Message = "Informe os dados corretamente.";
@@ -130,6 +134,35 @@ namespace QFurto.Services
                     ResponseTypeEnum.Success :
                     ResponseTypeEnum.Warning;
             return ResponseService.Type == ResponseTypeEnum.Success;
+        }
+
+        public List<Anuncio> Get()
+        {
+            try
+            {
+                dataContext.BeginTransaction();
+                var anuncios = anuncioRepository.Get();
+                ResponseService = new ResponseService()
+                {
+                    Type = ResponseTypeEnum.Success,
+                    Message = "Anúncios recuperados com sucesso."
+                };
+                return anuncios;
+            }
+            catch (Exception ex)
+            {
+                dataContext.Rollback();
+                ResponseService = new ResponseService()
+                {
+                    Type = ResponseTypeEnum.Error,
+                    Message = "Erro ao recuperar lista de anúncios."
+                };
+                return new List<Anuncio>();
+            }
+            finally
+            {
+                dataContext.Finally();
+            }
         }
     }
 }

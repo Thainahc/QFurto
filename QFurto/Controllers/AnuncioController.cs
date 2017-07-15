@@ -40,5 +40,36 @@ namespace QFurto.Controllers
             return Request.CreateErrorResponse(
                 HttpStatusCode.BadRequest, "Erro ao cadastrar anuncio.");
         }
+
+        [HttpGet]
+        public HttpResponseMessage Get()
+        {
+            try
+            {
+                AnuncioService anuncioService = new AnuncioService();
+
+                anuncioService.Get();
+
+                if (anuncioService.ResponseType.Equals("Error"))
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, anuncioService.ResponseMessage);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, new
+                    {
+                        Message = anuncioService.ResponseMessage,
+                        Type = anuncioService.ResponseType,
+                        FieldsInvalids = anuncioService.FieldsInvalids
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return Request.CreateErrorResponse(
+                HttpStatusCode.BadRequest, "Erro ao recuperar lista de anúncios.");
+        }
     }
 }
