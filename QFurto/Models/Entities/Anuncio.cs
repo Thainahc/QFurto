@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QFurto.Controllers.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,8 +16,8 @@ namespace QFurto.Models.Entities
         public int Ano { get; set; }
         public string Descricao { get; set; }
         public string Telefone { get; set; }
-        //public IMAGEM FotoVeiculo { get; set; }
-        //TipoVeiculo
-        //Bairro
+        public BairroEnum Bairro { get; set; }
+        public VeiculoEnum VeiculoTipo { get; set; }
+        public byte[] VeiculoFoto { get; set; }
     }
 }
