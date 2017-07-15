@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace QFurto.Models.Enums
+﻿namespace QFurto.Models.Enums
 {
     public enum ResponseTypeEnum
     {
