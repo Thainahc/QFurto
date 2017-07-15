@@ -2,7 +2,8 @@
 {
     public enum VeiculoEnum
     {
-        Moto,
-        Carro
+        None = 0,
+        Moto = 1,
+        Carro = 2
     }
 }
