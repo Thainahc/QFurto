@@ -48,7 +48,7 @@ namespace QFurto.Controllers
             {
                 AnuncioService anuncioService = new AnuncioService();
 
-                anuncioService.Get();
+                var anuncios = anuncioService.Get();
 
                 if (anuncioService.ResponseType.Equals("Error"))
                 {
@@ -58,6 +58,7 @@ namespace QFurto.Controllers
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, new
                     {
+                        ListaAnuncios = anuncios,
                         Message = anuncioService.ResponseMessage,
                         Type = anuncioService.ResponseType,
                         FieldsInvalids = anuncioService.FieldsInvalids
