@@ -17,7 +17,7 @@ namespace QFurto.Repositories
             query.Append(" (                    ");
             query.Append(" DataHora,            ");
             query.Append(" NomePessoa,          ");
-            query.Append(" TipoVeiculo,         ");
+            query.Append(" VeiculoTipo,         ");
             query.Append(" Modelo,              ");
             query.Append(" Placa,               ");
             query.Append(" Ano,                 ");
@@ -29,7 +29,7 @@ namespace QFurto.Repositories
             query.Append(" (                    ");
             query.Append(" ?DataHora,           ");
             query.Append(" ?NomePessoa,         ");
-            query.Append(" ?TipoVeiculo,        ");
+            query.Append(" ?VeiculoTipo,        ");
             query.Append(" ?Modelo,             ");
             query.Append(" ?Placa,              ");
             query.Append(" ?Ano,                ");
@@ -39,7 +39,7 @@ namespace QFurto.Repositories
             query.Append(" )                    ");
             var mySqlCommand = new MySqlCommand(
                 query.ToString(), DataContext.MySqlConnection, DataContext.MySqlTransaction);
-            mySqlCommand.Parameters.AddWithValue("?DataHora", DateTime.Now);
+            mySqlCommand.Parameters.AddWithValue("?DataHora", DateTime.Now.Date);
             mySqlCommand.Parameters.AddWithValue("?NomePessoa", anuncio.NomePessoa);
             mySqlCommand.Parameters.AddWithValue("?VeiculoTipo", anuncio.VeiculoTipo);
             mySqlCommand.Parameters.AddWithValue("?Modelo", anuncio.Modelo);
