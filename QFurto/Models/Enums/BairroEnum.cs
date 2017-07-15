@@ -7,6 +7,7 @@
         CidadeJardim = 2,
         CoronelLuciano = 3,
         AmericoSilva = 4,
-        Gomes = 5
+        Gomes = 5,
+        Buritis = 6,
     }
 }
