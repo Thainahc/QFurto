@@ -69,7 +69,7 @@ namespace QFurto.Repositories
             query.Append(" AnuncioId = ?AnuncioId      ");
             var mySqlCommand = new MySqlCommand(
                 query.ToString(), DataContext.MySqlConnection, DataContext.MySqlTransaction);
-            mySqlCommand.Parameters.AddWithValue("?DataHora", DateTime.Now);
+            mySqlCommand.Parameters.AddWithValue("?AnuncioId", anuncio.AnuncioId);
             mySqlCommand.Parameters.AddWithValue("?NomePessoa", anuncio.NomePessoa);
             mySqlCommand.Parameters.AddWithValue("?VeiculoTipo", anuncio.VeiculoTipo);
             mySqlCommand.Parameters.AddWithValue("?Modelo", anuncio.Modelo);
